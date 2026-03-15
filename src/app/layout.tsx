@@ -1,0 +1,40 @@
+import "./globals.css";
+import type { Metadata } from "next";
+import { Noto_Serif } from "next/font/google";
+
+import { cn } from "@/lib/utils";
+
+import { Toaster } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { ThemeProvider } from "@/components/theme-provider";
+
+const notoSerif = Noto_Serif({ subsets: ["latin"], variable: "--font-serif" });
+
+export const metadata: Metadata = {
+  title: "TioElvis",
+  description: "A personal development blog where I document my projects.",
+};
+
+interface Props {
+  children: React.ReactNode;
+}
+
+export default function Layout({ children }: Readonly<Props>) {
+  return (
+    <html
+      lang="en"
+      className={cn("font-serif", notoSerif.variable)}
+      suppressHydrationWarning>
+      <body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange>
+          <TooltipProvider>{children}</TooltipProvider>
+          <Toaster />
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}
