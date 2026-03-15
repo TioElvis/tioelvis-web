@@ -23,7 +23,7 @@ export default function Page() {
             </div>
             <div className="flex flex-col gap-0.5">
               <span className="text-[9px] font-semibold tracking-[0.15em] text-muted-foreground">
-                FULL STACK DEVE
+                FULL STACK DEV
               </span>
               <span className="text-[9px] font-bold tracking-[0.15em] text-primary">
                 BUILDING THE FUTURE
