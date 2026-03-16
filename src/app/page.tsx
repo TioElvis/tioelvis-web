@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { Fragment } from "react/jsx-runtime";
-import { IconChevronDown } from "@tabler/icons-react";
 
 import { Navbar } from "./components/navbar";
 
@@ -39,9 +38,27 @@ export default function Page() {
             Full stack developer
           </h3>
         </div>
-        <div className="absolute bottom-24 flex flex-col items-center text-muted-foreground">
-          <IconChevronDown className="animate-bounce" />
-        </div>
+        <footer className="absolute bottom-4 left-4 sm:hidden">
+          <div className="flex gap-2">
+            <div className="flex items-center justify-center">
+              <Image
+                src="/VenezuelaFlag.png"
+                alt="Venezuela flag"
+                width={35}
+                height={35}
+                objectFit="contain"
+              />
+            </div>
+            <div className="flex flex-col gap-0.5">
+              <span className="text-[9px] font-semibold tracking-[0.15em] text-muted-foreground">
+                FULL STACK DEV
+              </span>
+              <span className="text-[9px] font-bold tracking-[0.15em] text-primary">
+                BUILDING THE FUTURE
+              </span>
+            </div>
+          </div>
+        </footer>
       </section>
       {/* ABOUT */}
       <main className="relative min-h-screen"></main>
