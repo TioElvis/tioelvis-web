@@ -38,7 +38,7 @@ export default function Page() {
             Full stack developer
           </h3>
         </div>
-        <footer className="absolute bottom-18 left-4 sm:hidden">
+        <footer className="absolute bottom-24 left-4 sm:hidden">
           <div className="flex gap-2">
             <div className="flex items-center justify-center">
               <Image
