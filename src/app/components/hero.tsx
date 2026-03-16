@@ -3,7 +3,7 @@ import { IconChevronDown } from "@tabler/icons-react";
 
 export function Hero() {
   return (
-    <section className="min-h-screen relative flex flex-col items-center justify-center">
+    <section className="min-h-screen flex flex-col items-center justify-center lg:sticky top-0">
       <header className="hidden sm:flex absolute top-4 left-4 items-center gap-2">
         <Image
           src="/VenezuelaFlag.png"

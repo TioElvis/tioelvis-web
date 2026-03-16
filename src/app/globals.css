@@ -134,7 +134,7 @@
     @apply placeholder:text-sm;
   }
   .text-caracas {
-    @apply text-8xl sm:text-[9rem] lg:text-[12rem] xl:text-[14rem] 2xl:text-[16rem] font-black;
+    @apply text-7xl sm:text-[9rem] lg:text-[12rem] xl:text-[14rem] 2xl:text-[16rem] font-black;
   }
 }
 

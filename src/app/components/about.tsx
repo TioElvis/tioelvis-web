@@ -1,3 +1,4 @@
+"use client";
 import { IconCode, IconDatabase, IconServer2 } from "@tabler/icons-react";
 
 import { Ability } from "@/type";
@@ -24,7 +25,7 @@ const ABILITIES: Ability[] = [
 
 export function About() {
   return (
-    <main className="min-h-screen flex items-center justify-center">
+    <main className="min-h-screen flex items-center justify-center bg-background lg:sticky top-0">
       <MaxWidthWrapper className="space-y-8">
         <span className="text-primary font-bold text-xs">01 - ABOUT</span>
         <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium mt-4">

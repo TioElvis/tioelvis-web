@@ -10,7 +10,7 @@ export async function Projects() {
   console.log(data);
 
   return (
-    <section className="min-h-screen flex justify-center items-center">
+    <section className="min-h-screen flex justify-center items-center bg-background lg:sticky top-0">
       Projects
     </section>
   );
