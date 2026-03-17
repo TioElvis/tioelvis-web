@@ -28,6 +28,8 @@ export type Project = {
   title: string;
   slug: string;
   content: string;
+  description: string;
+  tags: string[];
   languages: Languages[];
   repositoryUrl?: string;
   demoUrl?: string;
