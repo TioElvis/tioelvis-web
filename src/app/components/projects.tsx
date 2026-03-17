@@ -1,7 +1,11 @@
 "use client";
 import Link from "next/link";
 import { motion } from "motion/react";
-import { IconLink } from "@tabler/icons-react";
+import { IconFolderCode, IconLink } from "@tabler/icons-react";
+
+import { Project } from "@/type";
+import { cn } from "@/lib/utils";
+import { useMediaQuery } from "@/hooks/use-media-query";
 
 import {
   Card,
@@ -10,11 +14,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Project } from "@/type";
-import { cn } from "@/lib/utils";
+import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { useMediaQuery } from "@/hooks/use-media-query";
 import { MaxWidthWrapper } from "@/components/max-width-wrapper";
 
 interface Props {
@@ -23,8 +31,6 @@ interface Props {
 
 export function Projects({ projects }: Props) {
   const isDesktop = useMediaQuery("(min-width: 1024px)");
-
-  console.log(projects);
 
   return (
     <motion.section
@@ -77,6 +83,20 @@ export function Projects({ projects }: Props) {
             </Card>
           ))}
         </div>
+        {projects.length === 0 && (
+          <Empty>
+            <EmptyHeader>
+              <EmptyMedia variant="icon">
+                <IconFolderCode />
+              </EmptyMedia>
+              <EmptyTitle>No Projects Yet</EmptyTitle>
+              <EmptyDescription>
+                It seems that there are no projects to display at the moment.
+                Please check back later for updates.
+              </EmptyDescription>
+            </EmptyHeader>
+          </Empty>
+        )}
       </MaxWidthWrapper>
     </motion.section>
   );
