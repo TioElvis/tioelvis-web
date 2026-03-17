@@ -10,18 +10,18 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "@/components/ui/empty";
+import { cn } from "@/lib/utils";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group";
 import { findProjects } from "@/lib/project";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { CardProject } from "@/components/card-project";
 import { MaxWidthWrapper } from "@/components/max-width-wrapper";
-import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
 
 // I don't know why I can't import this enum from "@/types" but works
 enum Languages {
@@ -108,7 +108,7 @@ export default function ProjectsPage() {
   const projects = query.data?.pages.flatMap((page) => page.data) || [];
 
   return (
-    <MaxWidthWrapper className="min-h-screen flex flex-col py-12 gap-4">
+    <MaxWidthWrapper className="min-h-screen flex flex-col py-8 gap-4">
       <h2 className="text-5xl sm:text-6xl my-4">
         TioElvis <span className="text-primary">Projects.</span>
       </h2>
