@@ -4,21 +4,14 @@ import { IconFolderCode, IconLink } from "@tabler/icons-react";
 import { Project } from "@/type";
 
 import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
   Empty,
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
 } from "@/components/ui/empty";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { CardProject } from "@/components/card-project";
 import { MaxWidthWrapper } from "@/components/max-width-wrapper";
 
 interface Props {
@@ -37,37 +30,8 @@ export function Projects({ projects }: Props) {
           <span className="text-primary">Projects.</span>
         </h2>
         <div className="grid grid-rows-3 gap-4">
-          {projects.map((project) => (
-            <Card
-              key={project._id}
-              className="cursor-pointer hover:ring-primary/50">
-              <CardHeader>
-                <CardTitle className="text-lg font-bold">
-                  {project.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">{project.description}</p>
-              </CardContent>
-              <CardFooter className="flex-col items-start">
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => {
-                    return (
-                      <Badge key={tag} className="text-xs" variant="outline">
-                        {tag}
-                      </Badge>
-                    );
-                  })}
-                </div>
-                <div className="w-full flex justify-end">
-                  <Button className="w-full sm:w-auto" asChild>
-                    <Link href={`/${project.slug}`}>
-                      View Project <IconLink />
-                    </Link>
-                  </Button>
-                </div>
-              </CardFooter>
-            </Card>
+          {projects.map((project, index) => (
+            <CardProject key={project._id} project={project} index={index} />
           ))}
         </div>
         {projects.length > 0 && (
