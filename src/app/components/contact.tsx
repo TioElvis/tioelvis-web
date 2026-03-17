@@ -1,7 +1,23 @@
+"use client";
+import { motion } from "motion/react";
+
+import { useMediaQuery } from "@/hooks/use-media-query";
+import { MaxWidthWrapper } from "@/components/max-width-wrapper";
+
 export function Contact() {
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+
   return (
-    <footer className="min-h-screen flex justify-center items-center bg-background lg:sticky top-0">
-      <p>CONTACT</p>
-    </footer>
+    <motion.footer
+      id="contact"
+      initial={isDesktop ? { opacity: 0, y: 50 } : false}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="min-h-screen relative flex justify-center items-center bg-background">
+      <MaxWidthWrapper className="space-y-8">
+        <span className="text-primary font-bold text-xs">03 - CONTACT</span>
+      </MaxWidthWrapper>
+    </motion.footer>
   );
 }

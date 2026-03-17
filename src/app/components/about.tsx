@@ -1,7 +1,9 @@
 "use client";
+import { motion } from "motion/react";
 import { IconCode, IconDatabase, IconServer2 } from "@tabler/icons-react";
 
 import { Ability } from "@/type";
+import { useMediaQuery } from "@/hooks/use-media-query";
 import { MaxWidthWrapper } from "@/components/max-width-wrapper";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
@@ -24,8 +26,16 @@ const ABILITIES: Ability[] = [
 ];
 
 export function About() {
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+
   return (
-    <main className="min-h-screen flex items-center justify-center bg-background lg:sticky top-0">
+    <motion.main
+      id="about"
+      initial={isDesktop ? { opacity: 0, y: 50 } : false}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="min-h-screen relative flex items-center justify-center bg-background">
       <MaxWidthWrapper className="space-y-8">
         <span className="text-primary font-bold text-xs">01 - ABOUT</span>
         <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium mt-4">
@@ -61,6 +71,6 @@ export function About() {
           })}
         </section>
       </MaxWidthWrapper>
-    </main>
+    </motion.main>
   );
 }
