@@ -70,6 +70,15 @@ export function Projects({ projects }: Props) {
             </Card>
           ))}
         </div>
+        {projects.length > 0 && (
+          <div className="w-full flex justify-end">
+            <Button className="w-full" asChild>
+              <Link href="/projects">
+                View All Projects <IconLink />
+              </Link>
+            </Button>
+          </div>
+        )}
         {projects.length === 0 && (
           <Empty>
             <EmptyHeader>
