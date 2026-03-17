@@ -12,6 +12,12 @@ export type Ability = {
   Icon: Icon;
 };
 
+export type Contact = {
+  name: string;
+  Icon: Icon;
+  href: string;
+};
+
 export enum Languages {
   TYPESCRIPT = "TypeScript",
   JAVASCRIPT = "JavaScript",

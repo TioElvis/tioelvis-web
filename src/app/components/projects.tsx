@@ -1,11 +1,7 @@
-"use client";
 import Link from "next/link";
-import { motion } from "motion/react";
 import { IconFolderCode, IconLink } from "@tabler/icons-react";
 
 import { Project } from "@/type";
-import { cn } from "@/lib/utils";
-import { useMediaQuery } from "@/hooks/use-media-query";
 
 import {
   Card,
@@ -30,19 +26,10 @@ interface Props {
 }
 
 export function Projects({ projects }: Props) {
-  const isDesktop = useMediaQuery("(min-width: 1024px)");
-
   return (
-    <motion.section
+    <section
       id="projects"
-      initial={isDesktop ? { opacity: 0, y: 50 } : false}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={cn(
-        "min-h-screen relative flex justify-center items-center bg-background",
-        !isDesktop && "my-4",
-      )}>
+      className="z-30 min-h-screen relative flex justify-center items-center bg-background my-8 py-16 lg:my-0 lg:py-0">
       <MaxWidthWrapper className="space-y-8">
         <span className="text-primary font-bold text-xs">02 - PROJECTS</span>
         <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium mt-4">
@@ -98,6 +85,6 @@ export function Projects({ projects }: Props) {
           </Empty>
         )}
       </MaxWidthWrapper>
-    </motion.section>
+    </section>
   );
 }
