@@ -49,3 +49,14 @@ export type Pagination = {
   next: number | null;
   prev: number | null;
 };
+
+export type Section = {
+  _id: string;
+  title: string;
+  slug: string;
+  content: string;
+  order: number;
+  project?: string;
+  parent?: string;
+  sections?: Section[];
+};
