@@ -30,7 +30,7 @@ export default async function Layout({ children, params }: Props) {
         <AppSidebar />
         <SidebarInset className="flex flex-col">
           <AppHeader />
-          <main className="flex-1 px-4 py-8">{children}</main>
+          {children}
         </SidebarInset>
       </ProjectProvider>
       <ModeToggle className="absolute bottom-4 right-4 md:bottom-8 md:right-8" />

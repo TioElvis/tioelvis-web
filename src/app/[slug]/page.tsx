@@ -1,5 +1,9 @@
-import { Fragment } from "react/jsx-runtime";
+"use client";
+import { useProject } from "@/context/project-context";
+import { RenderProject } from "@/components/render-project";
 
 export default function Page() {
-  return <Fragment>MARKDOWN CONTENT</Fragment>;
+  const { project, sections } = useProject();
+
+  return <RenderProject project={project} sections={sections} />;
 }
