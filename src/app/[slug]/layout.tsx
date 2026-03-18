@@ -33,7 +33,7 @@ export default async function Layout({ children, params }: Props) {
           {children}
         </SidebarInset>
       </ProjectProvider>
-      <ModeToggle className="absolute bottom-4 right-4 md:bottom-8 md:right-8" />
+      <ModeToggle className="fixed bottom-4 right-4 md:bottom-8 md:right-8" />
     </SidebarProvider>
   );
 }
