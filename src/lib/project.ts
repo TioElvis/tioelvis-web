@@ -1,6 +1,6 @@
 "use server";
 import { API_URL } from "./constants";
-import type { Pagination, Project, Response } from "@/type";
+import type { Pagination, Project, Response, Section } from "@/type";
 
 interface ResponseFindProjects extends Response<Project[]> {
   pagination: Pagination | undefined;
@@ -36,6 +36,39 @@ export async function findProjects(
       message: "An error occurred while fetching projects",
       data: [],
       pagination: undefined,
+      success: false,
+    };
+  }
+}
+
+export async function findProjectBySlug(
+  slug: string,
+): Promise<Response<{ project: Project; sections: Section[] } | undefined>> {
+  try {
+    const response = await fetch(
+      new URL(`/project/find-by-slug/${slug}`, API_URL),
+    );
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      return {
+        message: json.message,
+        data: undefined,
+        success: false,
+      };
+    }
+
+    return {
+      message: json.message,
+      data: json.data,
+      success: true,
+    };
+  } catch (error) {
+    console.error("Error fetching project by slug:", error);
+    return {
+      message: "An error occurred while fetching the project",
+      data: undefined,
       success: false,
     };
   }
