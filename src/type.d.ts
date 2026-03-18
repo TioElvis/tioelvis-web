@@ -60,3 +60,12 @@ export type Section = {
   parent?: string;
   sections?: Section[];
 };
+
+export type Repository = {
+  _id?: string;
+  name: string;
+  description: string;
+  owner: string;
+  url: string;
+  isPublished: boolean;
+};

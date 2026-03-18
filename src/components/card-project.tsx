@@ -19,7 +19,7 @@ interface Props {
 
 export function CardProject({ project, index }: Props) {
   return (
-    <Card key={project._id} className="cursor-pointer hover:ring-primary/50">
+    <Card className="cursor-pointer hover:ring-primary/50">
       <CardHeader>
         <div className="flex items-center gap-2">
           <span className="text-primary">

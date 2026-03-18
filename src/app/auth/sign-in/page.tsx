@@ -61,7 +61,9 @@ export default function Page() {
       return json.message;
     },
     onSuccess: (message) => {
-      toast.success(message, { description: "Redirecting..." });
+      toast.success(message, {
+        description: "Redirecting to dashboard projects...",
+      });
 
       setTimeout(() => {
         window.location.href = "/dashboard/projects";
