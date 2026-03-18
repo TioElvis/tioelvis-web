@@ -12,16 +12,43 @@ interface Props {
   content: string;
 }
 
+const copyToClipboard = async (text: string): Promise<boolean> => {
+  if (navigator.clipboard && window.isSecureContext) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch (err) {
+      console.warn("Clipboard API failed, trying fallback...", err);
+    }
+  }
+
+  try {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.style.position = "fixed";
+    textArea.style.left = "-999999px";
+    textArea.style.top = "-999999px";
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    const successful = document.execCommand("copy");
+    textArea.remove();
+    return successful;
+  } catch (err) {
+    console.error("Fallback copy failed", err);
+    return false;
+  }
+};
+
 function Copy({ text }: { text: string }) {
   const [isCopied, setIsCopied] = useState(false);
 
   const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(text);
+    const success = await copyToClipboard(text);
+    if (success) {
       setIsCopied(true);
       setTimeout(() => setIsCopied(false), 2000);
-    } catch (err) {
-      console.error("Failed to copy text: ", err);
     }
   };
 
@@ -56,7 +83,7 @@ export function MarkdownViewer({ content }: Props) {
   const cleanContent = content.replace(/^[ \t]*```/gm, "```");
 
   return (
-    <div className="prose max-w-none prose-strong:text-foreground prose-p:text-muted-foreground prose-li:text-muted-foreground prose-code:bg-muted  prose-code:px-1.5  prose-code:py-0.5  prose-code:rounded-md  prose-code:text-foreground prose-code:before:content-none prose-code:after:con prose-pre:bg-zinc-950 prose-pre:border  prose-pre:border-border prose-pre:p-4 prose-pre:rounded-lg prose-pre:prose-code:bg-transparent  prose-pre:prose-code:text-white  prose-pre:prose-code:p-0">
+    <div className="prose max-w-none prose-strong:text-foreground prose-p:text-muted-foreground prose-li:text-muted-foreground prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:text-foreground prose-code:before:content-none prose-code:after:content-none prose-pre:bg-zinc-950 prose-pre:border prose-pre:border-border prose-pre:p-4 prose-pre:rounded-lg prose-pre:prose-code:bg-transparent prose-pre:prose-code:text-white prose-pre:prose-code:p-0">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeHighlight]}
