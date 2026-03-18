@@ -33,7 +33,7 @@ interface Props {
   name: string;
 }
 
-export function DialogGenerateProject({ name }: Props) {
+export function AlertDialogGenerateProject({ name }: Props) {
   const [open, setOpen] = useState(false);
 
   const form = useForm({
@@ -81,7 +81,7 @@ export function DialogGenerateProject({ name }: Props) {
 
       setTimeout(() => {
         router.push(`/${response.data.slug}`);
-      }, 2000);
+      }, 1000);
     },
     onError: (error) => {
       toast.error(error.message);

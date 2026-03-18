@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { IconFile, IconLink, IconTrash } from "@tabler/icons-react";
+import { IconLink } from "@tabler/icons-react";
 
 import {
   Card,
@@ -10,7 +10,8 @@ import {
 } from "./ui/card";
 import { Repository } from "@/type";
 import { Button } from "./ui/button";
-import { DialogGenerateProject } from "./dialog-generate-project";
+import { AlertDialogDeleteProject } from "./alert-dialog-delete-project";
+import { AlertDialogGenerateProject } from "./alert-dialog-generate-project";
 
 interface Props {
   repo: Repository;
@@ -38,11 +39,9 @@ export function CardRepo({ repo, index }: Props) {
           </Link>
         </Button>
         {repo.isPublished ? (
-          <Button variant="outline">
-            Delete <IconTrash />
-          </Button>
+          <AlertDialogDeleteProject _id={repo._id ? repo._id : ""} />
         ) : (
-          <DialogGenerateProject name={repo.name} />
+          <AlertDialogGenerateProject name={repo.name} />
         )}
       </CardFooter>
     </Card>
