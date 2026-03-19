@@ -5,6 +5,7 @@ import { ProjectProvider } from "@/context/project-context";
 import { AppHeader } from "@/components/app-header";
 import { AppSidebar } from "@/components/app-sidebar";
 import { ModeToggle } from "@/components/mode-toggle";
+import { ErrorMessage } from "@/components/error-message";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 interface Props {
@@ -18,7 +19,7 @@ export default async function Layout({ children, params }: Props) {
   const response = await findProjectBySlug(slug);
 
   if (!response.success) {
-    return <div>Error</div>;
+    return <ErrorMessage message={response.message} />;
   }
 
   const project = response.data!.project;
