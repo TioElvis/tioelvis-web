@@ -8,6 +8,8 @@ import { ModeToggle } from "@/components/mode-toggle";
 import { ErrorMessage } from "@/components/error-message";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
+export const dynamic = "force-dynamic";
+
 interface Props {
   children: React.ReactNode;
   params: Promise<{ slug: string }>;

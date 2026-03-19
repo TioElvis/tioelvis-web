@@ -4,6 +4,8 @@ import { CardRepo } from "@/components/card-repo";
 import { ErrorMessage } from "@/components/error-message";
 import { MaxWidthWrapper } from "@/components/max-width-wrapper";
 
+export const dynamic = "force-dynamic";
+
 export default async function Page() {
   const response = await findRepos();
 

@@ -9,6 +9,8 @@ import { ErrorMessage } from "@/components/error-message";
 
 import { Fragment } from "react/jsx-runtime";
 
+export const dynamic = "force-dynamic";
+
 export default async function Page() {
   const response = await findProjects("?limit=3");
 
