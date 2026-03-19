@@ -2,6 +2,7 @@ import Link from "next/link";
 import { IconBrandGithub, IconBrandLinkedin } from "@tabler/icons-react";
 
 import type { Contact } from "@/type";
+
 import { Button } from "@/components/ui/button";
 import { MaxWidthWrapper } from "@/components/max-width-wrapper";
 
@@ -45,7 +46,7 @@ export function Contact() {
                 key={name}
                 variant="ghost"
                 size="lg"
-                className="w-full mt-4 justify-start"
+                className="w-full h-14 mt-4 justify-start"
                 asChild>
                 <Link href={href} target="_blank" rel="noopener noreferrer">
                   <Icon />

@@ -68,4 +68,5 @@ export type Repository = {
   owner: string;
   url: string;
   isPublished: boolean;
+  slug: string;
 };

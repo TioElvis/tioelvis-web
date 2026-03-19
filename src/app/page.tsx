@@ -1,37 +1,28 @@
-import Link from "next/link";
-
 import { Hero } from "./components/hero";
 import { About } from "./components/about";
 import { Navbar } from "./components/navbar";
 import { Contact } from "./components/contact";
 import { Projects } from "./components/projects";
 
-import { isAuthenticated } from "@/lib/auth";
 import { findProjects } from "@/lib/project";
+import { ErrorMessage } from "@/components/error-message";
 
-import { Button } from "@/components/ui/button";
+import { Fragment } from "react/jsx-runtime";
 
 export default async function Page() {
-  const { data, success } = await findProjects("?limit=3");
+  const response = await findProjects("?limit=3");
 
-  if (!success) {
-    return <div>Error</div>;
+  if (!response.success) {
+    return <ErrorMessage message={response.message} />;
   }
 
-  const isAuth = await isAuthenticated();
-
   return (
-    <div className="relative">
+    <Fragment>
       <Navbar />
       <Hero />
       <About />
-      <Projects projects={data} />
+      <Projects projects={response.data} />
       <Contact />
-      {isAuth && (
-        <Button className="fixed bottom-8 right-8 z-50" asChild>
-          <Link href="/dashboard">Go to Dashboard</Link>
-        </Button>
-      )}
-    </div>
+    </Fragment>
   );
 }

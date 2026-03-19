@@ -1,4 +1,7 @@
-import { IconLink } from "@tabler/icons-react";
+import Link from "next/link";
+import { IconBrandGithub, IconLink } from "@tabler/icons-react";
+
+import { Project } from "@/type";
 
 import {
   Card,
@@ -7,8 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
-import Link from "next/link";
-import { Project } from "@/type";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 
@@ -19,7 +20,7 @@ interface Props {
 
 export function CardProject({ project, index }: Props) {
   return (
-    <Card className="cursor-pointer hover:ring-primary/50">
+    <Card className="cursor-pointer hover:ring-primary/50 hover:scale-[1.01] transition-all duration-100">
       <CardHeader>
         <div className="flex items-center gap-2">
           <span className="text-primary">
@@ -41,10 +42,18 @@ export function CardProject({ project, index }: Props) {
             );
           })}
         </div>
-        <div className="w-full flex justify-end">
-          <Button className="w-full sm:w-auto" asChild>
+        <div className="w-full flex flex-col md:flex-row justify-end gap-2">
+          <Button asChild>
             <Link href={`/${project.slug}`}>
-              View Project <IconLink />
+              Documentation <IconLink />
+            </Link>
+          </Button>
+          <Button variant="outline" asChild>
+            <Link
+              href={project.repositoryUrl!}
+              target="_blank"
+              rel="noopener noreferrer">
+              Github <IconBrandGithub />
             </Link>
           </Button>
         </div>

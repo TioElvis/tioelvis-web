@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { IconLink } from "@tabler/icons-react";
+import { IconBrandGithub, IconLink } from "@tabler/icons-react";
+
+import { Repository } from "@/type";
 
 import {
   Card,
@@ -8,8 +10,8 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
-import { Repository } from "@/type";
 import { Button } from "./ui/button";
+
 import { AlertDialogDeleteProject } from "./alert-dialog-delete-project";
 import { AlertDialogGenerateProject } from "./alert-dialog-generate-project";
 
@@ -32,10 +34,15 @@ export function CardRepo({ repo, index }: Props) {
       <CardContent>
         <p className="text-muted-foreground">{repo.description}</p>
       </CardContent>
-      <CardFooter className="flex justify-end gap-2">
-        <Button asChild>
+      <CardFooter className="flex justify-between md:justify-end gap-2">
+        <Button asChild variant="outline">
           <Link href={repo.url} target="_blank" rel="noopener noreferrer">
-            View Project <IconLink />
+            Github <IconBrandGithub />
+          </Link>
+        </Button>
+        <Button asChild variant="outline">
+          <Link href={`/${repo.slug}`}>
+            Documentation <IconLink />
           </Link>
         </Button>
         {repo.isPublished ? (

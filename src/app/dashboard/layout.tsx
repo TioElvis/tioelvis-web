@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
-import { Fragment } from "react/jsx-runtime";
 
 import { isAuthenticated } from "@/lib/auth";
+import { SignOutButton } from "@/components/sign-out-button";
 
 interface Props {
   children: React.ReactNode;
@@ -12,5 +12,9 @@ export default async function Layout({ children }: Props) {
     return redirect("/auth/sign-in");
   }
 
-  return <Fragment>{children}</Fragment>;
+  return (
+    <div className="relative">
+      {children} <SignOutButton />
+    </div>
+  );
 }

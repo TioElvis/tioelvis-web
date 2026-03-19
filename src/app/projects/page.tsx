@@ -1,7 +1,11 @@
 "use client";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { IconFolderCode, IconSearch } from "@tabler/icons-react";
+import { IconArrowBack, IconFolderCode, IconSearch } from "@tabler/icons-react";
+
+import { cn } from "@/lib/utils";
+import { findProjects } from "@/lib/project";
 
 import {
   Empty,
@@ -10,17 +14,16 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "@/components/ui/empty";
-import { cn } from "@/lib/utils";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group";
-import { findProjects } from "@/lib/project";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { CardProject } from "@/components/card-project";
+import { ErrorMessage } from "@/components/error-message";
 import { MaxWidthWrapper } from "@/components/max-width-wrapper";
 
 // I don't know why I can't import this enum from "@/types" but works
@@ -102,13 +105,21 @@ export default function ProjectsPage() {
   });
 
   if (query.isError) {
-    return <div>Error al cargar los proyectos.</div>;
+    return <ErrorMessage message={(query.error as Error).message} />;
   }
 
   const projects = query.data?.pages.flatMap((page) => page.data) || [];
 
   return (
     <MaxWidthWrapper className="min-h-screen flex flex-col py-8 gap-4">
+      <div className="flex justify-start">
+        <Button variant="link" asChild>
+          <Link href="/">
+            <IconArrowBack />
+            Back to Home
+          </Link>
+        </Button>
+      </div>
       <h2 className="text-5xl sm:text-6xl my-4">
         TioElvis <span className="text-primary">Projects.</span>
       </h2>
@@ -145,12 +156,12 @@ export default function ProjectsPage() {
           })}
         </div>
       </header>
-      {query.isFetching && !query.isFetchingNextPage && (
+      {query.isLoading && (
         <section className="flex items-center justify-center py-10 gap-2">
           <Spinner /> <p>Loading projects...</p>
         </section>
       )}
-      {projects.length === 0 && !query.isFetching && (
+      {projects.length === 0 && !query.isLoading && (
         <Empty>
           <EmptyHeader>
             <EmptyMedia variant="icon">
@@ -165,26 +176,24 @@ export default function ProjectsPage() {
         </Empty>
       )}
       <div className="flex flex-col gap-4 mt-4">
-        {projects.map((project, index) => {
-          return (
-            <CardProject key={project._id} project={project} index={index} />
-          );
-        })}
+        {!query.isLoading &&
+          projects.map((project, index) => {
+            return (
+              <CardProject key={project._id} project={project} index={index} />
+            );
+          })}
       </div>
-      {projects.length > 0 && (
-        <Button
-          className="w-full"
-          onClick={() => query.fetchNextPage()}
-          disabled={!query.hasNextPage || query.isFetchingNextPage}>
-          {query.isFetchingNextPage ? (
-            <Spinner />
-          ) : query.hasNextPage ? (
-            "Load More"
-          ) : (
-            "No more projects"
-          )}
-        </Button>
-      )}
+      <div className="w-full flex items-center justify-center">
+        {projects.length > 0 && !query.isFetchingNextPage && (
+          <Button
+            variant="link"
+            onClick={() => query.fetchNextPage()}
+            disabled={!query.hasNextPage || query.isFetchingNextPage}>
+            {query.hasNextPage ? "Load More" : "No more projects"}
+          </Button>
+        )}
+        {projects.length > 0 && query.isFetchingNextPage && <Spinner />}
+      </div>
     </MaxWidthWrapper>
   );
 }

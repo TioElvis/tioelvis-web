@@ -24,7 +24,7 @@ export default function Layout({ children }: Readonly<Props>) {
   return (
     <html
       lang="en"
-      className={cn("font-serif", notoSerif.variable)}
+      className={cn("font-serif relative", notoSerif.variable)}
       suppressHydrationWarning>
       <body>
         <QueryProvider>

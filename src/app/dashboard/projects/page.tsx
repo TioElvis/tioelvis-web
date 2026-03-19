@@ -1,12 +1,14 @@
 import { findRepos } from "@/lib/github";
+
 import { CardRepo } from "@/components/card-repo";
+import { ErrorMessage } from "@/components/error-message";
 import { MaxWidthWrapper } from "@/components/max-width-wrapper";
 
 export default async function Page() {
   const response = await findRepos();
 
   if (!response.success) {
-    return <div>Error</div>;
+    return <ErrorMessage message={response.message} />;
   }
 
   const repos = response.data;

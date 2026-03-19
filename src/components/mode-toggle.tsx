@@ -13,7 +13,7 @@ export function ModeToggle({ className, ...props }: Props) {
   return (
     <Button
       variant="secondary"
-      className={cn("h-12 w-12 md:w-10 md:h-10 rounded-full border", className)}
+      className={cn("h-11 w-11 md:w-10 md:h-10 rounded-full border", className)}
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
       {...props}
       suppressHydrationWarning>

@@ -35,10 +35,10 @@ export function Projects({ projects }: Props) {
           ))}
         </div>
         {projects.length > 0 && (
-          <div className="w-full flex justify-end">
-            <Button className="w-full" asChild>
+          <div className="w-full flex justify-center">
+            <Button variant="link" asChild>
               <Link href="/projects">
-                View All Projects <IconLink />
+                All Projects <IconLink />
               </Link>
             </Button>
           </div>
