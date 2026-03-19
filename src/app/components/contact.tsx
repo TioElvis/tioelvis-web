@@ -1,5 +1,9 @@
 import Link from "next/link";
-import { IconBrandGithub, IconBrandLinkedin } from "@tabler/icons-react";
+import {
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconBrandYoutube,
+} from "@tabler/icons-react";
 
 import type { Contact } from "@/type";
 
@@ -16,6 +20,11 @@ const CONTACT_METHODS: Contact[] = [
     name: "LinkedIn",
     Icon: IconBrandLinkedin,
     href: "https://www.linkedin.com/in/elvis-vera-3657ba365/",
+  },
+  {
+    name: "YouTube",
+    Icon: IconBrandYoutube,
+    href: "https://www.youtube.com/@tioelvis4615",
   },
 ];
 
