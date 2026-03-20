@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Noto_Serif } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next"
 
 import { cn } from "@/lib/utils";
 import { DOMAIN } from "@/lib/constants";
